@@ -7,9 +7,9 @@ data = [json.loads(line) for line in open(
 
 def top_retweeted(data):
     data_sorted = sorted(data, key=lambda x: x['retweetCount'], reverse=True)
-    for i in range(len(data_sorted)):
-        if i < 10:
-            print(data_sorted[i]['retweetCount'])
+    for i in range(10):
+        print(
+            f'{data_sorted[i]["content"]}   {data_sorted[i]["retweetCount"]}')
 
 
 def top_users(data):
@@ -59,4 +59,26 @@ def top_hashtags(data):
         print(hashtags[i])
 
 
-top_users(data)
+def main(data):
+
+    conected = True
+    while conected:
+        print("1 for top 10 retweeted")
+        print("2 for top 10 users")
+        print("3 for top 10 dates")
+        print("4 for top 10 hashtags")
+        print("5 to exit")
+        option = int(input('option: '))
+        if option == 1:
+            top_retweeted(data)
+        elif option == 2:
+            top_users(data)
+        elif option == 3:
+            top_date(data)
+        elif option == 4:
+            top_hashtags(data)
+        elif option == 5:
+            conected = False
+
+
+main(data)
